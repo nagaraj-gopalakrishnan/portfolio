@@ -15,7 +15,7 @@ function AppRoutes() {
   return (
     <div className="bg-background text-white min-h-screen">
       <Header />
-      <main className="pt-20">
+      <main className="pt-5">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route
