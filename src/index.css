@@ -48,7 +48,7 @@ html {
 
 /* Ensure sections take full viewport height */
 section {
-  min-height: 100vh;
+  min-height: calc(100vh - 70px) !important;
 }
 
 /* Smooth animations */
