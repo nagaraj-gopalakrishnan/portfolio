@@ -5,25 +5,17 @@ interface PageTransitionProps {
   children: React.ReactNode;
 }
 
+/**
+ * Cinematic cross-dissolve:
+ * the outgoing page fades + blurs while gently zooming forward,
+ * the incoming page fades + un-blurs in from slightly behind.
+ */
 const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
-  // Check if desktop (above 768px)
-  const isDesktop = window.innerWidth >= 768;
-
-  // Desktop: Sliding panel animation
-  const desktopVariants = {
-    initial: { x: "100%", opacity: 0 },
-    animate: { x: 0, opacity: 1 },
-    exit: { x: "-100%", opacity: 0 },
+  const variants = {
+    initial: { opacity: 0, scale: 0.98, filter: "blur(8px)" },
+    animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
+    exit: { opacity: 0, scale: 1.04, filter: "blur(8px)" },
   };
-
-  // Mobile: Fade animation (traditional)
-  const mobileVariants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 },
-  };
-
-  const variants = isDesktop ? desktopVariants : mobileVariants;
 
   return (
     <motion.div
@@ -32,9 +24,10 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
       exit="exit"
       variants={variants}
       transition={{
-        duration: 0.5,
-        ease: "easeInOut",
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1],
       }}
+      style={{ transformOrigin: "center" }}
       className="w-full"
     >
       {children}

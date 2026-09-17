@@ -1,5 +1,11 @@
 import React from "react";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  type Variants,
+} from "framer-motion";
 import {
   Code2,
   Layout,
@@ -9,24 +15,55 @@ import {
   TrendingUp,
   Boxes,
   Server,
+  Smartphone,
 } from "lucide-react";
+
+/* ---------- animation presets ---------- */
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 40, filter: "blur(10px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+const stagger: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
 
 const Skills: React.FC = () => {
   const skillCategories = [
     {
-      icon: <Code2 className="text-primary" size={32} />,
+      icon: <Code2 className="text-primary" size={26} />,
       title: "Programming Languages",
       skills: [
         { name: "JavaScript", level: 95 },
         { name: "TypeScript", level: 90 },
         { name: "Python", level: 88 },
+        { name: "Dart", level: 88 },
+        { name: "Kotlin", level: 80 },
+        { name: "Swift", level: 78 },
         { name: "PHP", level: 85 },
-        { name: "C#", level: 75 },
         { name: "SQL", level: 85 },
       ],
     },
     {
-      icon: <Layout className="text-primary" size={32} />,
+      icon: <Smartphone className="text-primary" size={26} />,
+      title: "Mobile App Development",
+      skills: [
+        { name: "Flutter", level: 90 },
+        { name: "React Native", level: 90 },
+        { name: "Android (Jetpack)", level: 85 },
+        { name: "iOS (SwiftUI)", level: 80 },
+        { name: "Firebase", level: 88 },
+        { name: "Push Notifications", level: 85 },
+      ],
+    },
+    {
+      icon: <Layout className="text-primary" size={26} />,
       title: "Frontend Development",
       skills: [
         { name: "React.js", level: 95 },
@@ -38,7 +75,7 @@ const Skills: React.FC = () => {
       ],
     },
     {
-      icon: <Server className="text-primary" size={32} />,
+      icon: <Server className="text-primary" size={26} />,
       title: "Backend Development",
       skills: [
         { name: "Node.js", level: 90 },
@@ -50,7 +87,7 @@ const Skills: React.FC = () => {
       ],
     },
     {
-      icon: <Database className="text-primary" size={32} />,
+      icon: <Database className="text-primary" size={26} />,
       title: "Databases",
       skills: [
         { name: "MySQL", level: 90 },
@@ -61,7 +98,7 @@ const Skills: React.FC = () => {
       ],
     },
     {
-      icon: <Cloud className="text-primary" size={32} />,
+      icon: <Cloud className="text-primary" size={26} />,
       title: "Cloud & DevOps",
       skills: [
         { name: "AWS", level: 85 },
@@ -73,7 +110,7 @@ const Skills: React.FC = () => {
       ],
     },
     {
-      icon: <Boxes className="text-primary" size={32} />,
+      icon: <Boxes className="text-primary" size={26} />,
       title: "CMS & E-Commerce",
       skills: [
         { name: "WordPress", level: 90 },
@@ -83,7 +120,7 @@ const Skills: React.FC = () => {
       ],
     },
     {
-      icon: <TrendingUp className="text-primary" size={32} />,
+      icon: <TrendingUp className="text-primary" size={26} />,
       title: "AI & Digital Marketing",
       skills: [
         { name: "ChatGPT Integration", level: 88 },
@@ -94,7 +131,7 @@ const Skills: React.FC = () => {
       ],
     },
     {
-      icon: <Shield className="text-primary" size={32} />,
+      icon: <Shield className="text-primary" size={26} />,
       title: "Security & Networking",
       skills: [
         { name: "CCNA", level: 85 },
@@ -107,6 +144,10 @@ const Skills: React.FC = () => {
 
   const tools = [
     "VS Code",
+    "Android Studio",
+    "Xcode",
+    "Flutter",
+    "Firebase",
     "Git & GitHub",
     "Postman",
     "Figma",
@@ -118,53 +159,130 @@ const Skills: React.FC = () => {
     "Trello",
   ];
 
+  // Mouse-driven spotlight
+  const mx = useMotionValue(0.5);
+  const my = useMotionValue(0.5);
+  const sx = useSpring(mx, { stiffness: 50, damping: 20 });
+  const sy = useSpring(my, { stiffness: 50, damping: 20 });
+  const spotX = useTransform(sx, [0, 1], ["0%", "100%"]);
+  const spotY = useTransform(sy, [0, 1], ["0%", "100%"]);
+  const spotlight = useTransform(
+    [spotX, spotY],
+    ([x, y]) =>
+      `radial-gradient(700px circle at ${x} ${y}, rgba(252,213,53,0.08), transparent 60%)`
+  );
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mx.set((e.clientX - rect.left) / rect.width);
+    my.set((e.clientY - rect.top) / rect.height);
+  };
+
   return (
-    <section className="min-h-screen px-6 py-20 flex items-center justify-center">
-      <div className="max-w-7xl w-full">
+    <section
+      onMouseMove={handleMouseMove}
+      className="relative min-h-screen overflow-hidden px-6 py-24"
+    >
+      {/* ===== cinematic background ===== */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#23272F_0%,_#181A20_55%,_#0E0F13_100%)]" />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -top-40 -left-20 h-[32rem] w-[32rem] rounded-full bg-primary/15 blur-[130px]"
+        animate={{ y: [0, 40, 0], opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 -right-24 h-[30rem] w-[30rem] rounded-full bg-sky-500/10 blur-[130px]"
+        animate={{ y: [0, -40, 0], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.15]
+          bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)]
+          bg-[size:60px_60px]
+          [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]"
+      />
+      <motion.div
+        aria-hidden
+        style={{ background: spotlight }}
+        className="pointer-events-none absolute inset-0"
+      />
+      <div className="hero-grain pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay" />
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          variants={stagger}
+          initial="hidden"
+          animate="show"
+          className="mb-16 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            My <span className="text-primary">Skills</span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            A comprehensive overview of my technical expertise and proficiency across various
-            technologies and tools.
-          </p>
+          <motion.span
+            variants={fadeUp}
+            className="text-xs md:text-sm uppercase tracking-[0.5em] text-primary/80"
+          >
+            What I Work With
+          </motion.span>
+          <motion.h2
+            variants={fadeUp}
+            className="mt-3 text-4xl md:text-6xl font-bold tracking-tight"
+          >
+            My{" "}
+            <span className="bg-gradient-to-r from-primary via-yellow-200 to-primary bg-clip-text text-transparent animate-gradient">
+              Skills
+            </span>
+          </motion.h2>
+          <motion.p
+            variants={fadeUp}
+            className="mx-auto mt-5 max-w-3xl text-lg text-gray-400"
+          >
+            A comprehensive overview of my technical expertise across web, mobile,
+            cloud, and AI — spanning full-stack development and cross-platform
+            Android &amp; iOS apps.
+          </motion.p>
         </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {skillCategories.map((category, index) => (
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {skillCategories.map((category) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * index, duration: 0.5 }}
-              className="bg-gray-800 p-6 rounded-lg border border-secondary hover:border-primary transition-colors"
+              variants={fadeUp}
+              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 300, damping: 24 }}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-md transition-colors hover:border-primary/50"
             >
-              <div className="flex items-center gap-3 mb-4">
-                {category.icon}
-                <h3 className="text-xl font-semibold">{category.title}</h3>
+              <span className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(400px_circle_at_50%_0%,rgba(252,213,53,0.12),transparent_70%)]" />
+              <div className="mb-5 flex items-center gap-3">
+                <span className="inline-flex rounded-xl border border-white/10 bg-white/5 p-2.5">
+                  {category.icon}
+                </span>
+                <h3 className="text-lg font-semibold">{category.title}</h3>
               </div>
 
               <div className="space-y-4">
                 {category.skills.map((skill) => (
                   <div key={skill.name}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-gray-300 text-sm">{skill.name}</span>
-                      <span className="text-primary text-sm font-semibold">{skill.level}%</span>
+                    <div className="mb-1 flex justify-between">
+                      <span className="text-sm text-gray-300">{skill.name}</span>
+                      <span className="text-sm font-semibold text-primary">
+                        {skill.level}%
+                      </span>
                     </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2">
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
                       <motion.div
                         initial={{ width: 0 }}
-                        animate={{ width: `${skill.level}%` }}
-                        transition={{ delay: 0.2 + index * 0.05, duration: 1, ease: "easeOut" }}
-                        className="bg-primary h-2 rounded-full"
+                        whileInView={{ width: `${skill.level}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                        className="h-2 rounded-full bg-gradient-to-r from-yellow-300 to-primary shadow-[0_0_12px_-2px_rgba(252,213,53,0.8)]"
                       />
                     </div>
                   </div>
@@ -172,26 +290,26 @@ const Skills: React.FC = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Tools & Technologies */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="bg-gray-800 p-8 rounded-lg border border-secondary"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-md"
         >
-          <h3 className="text-2xl font-bold mb-6 text-center">
-            Tools & <span className="text-primary">Technologies</span>
+          <span className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-primary/10 blur-3xl" />
+          <h3 className="mb-6 text-center text-2xl font-bold">
+            Tools &amp; <span className="text-primary">Technologies</span>
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
-            {tools.map((tool, index) => (
+            {tools.map((tool) => (
               <motion.span
                 key={tool}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.7 + index * 0.05, duration: 0.3 }}
-                className="bg-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-primary hover:text-background transition-colors cursor-default"
+                whileHover={{ scale: 1.08, y: -2 }}
+                className="cursor-default rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-sm transition-colors hover:border-primary/60 hover:bg-primary hover:text-background"
               >
                 {tool}
               </motion.span>
@@ -201,15 +319,17 @@ const Skills: React.FC = () => {
 
         {/* Soft Skills */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-6 bg-gray-800 p-8 rounded-lg border border-secondary"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="relative mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-md"
         >
-          <h3 className="text-2xl font-bold mb-6 text-center">
+          <span className="pointer-events-none absolute -left-16 -bottom-16 h-52 w-52 rounded-full bg-sky-500/10 blur-3xl" />
+          <h3 className="mb-6 text-center text-2xl font-bold">
             Soft <span className="text-primary">Skills</span>
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {[
               "Problem Solving",
               "Project Management",
@@ -219,17 +339,11 @@ const Skills: React.FC = () => {
               "Time Management",
               "Organizational Skills",
               "Agile/Scrum",
-            ].map((skill, index) => (
-              <motion.div
-                key={skill}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.9 + index * 0.05, duration: 0.4 }}
-                className="flex items-center gap-2 text-gray-300"
-              >
+            ].map((skill) => (
+              <div key={skill} className="flex items-center gap-2 text-gray-300">
                 <span className="text-primary">✓</span>
                 <span>{skill}</span>
-              </motion.div>
+              </div>
             ))}
           </div>
         </motion.div>
