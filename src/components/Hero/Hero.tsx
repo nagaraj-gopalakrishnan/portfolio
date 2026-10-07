@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef } from "react";
 import {
   motion,
@@ -8,7 +10,8 @@ import {
 } from "framer-motion";
 import { ReactTyped } from "react-typed";
 import { Laptop, Sparkles, Smartphone, BarChart3 } from "lucide-react";
-import { Link } from "react-router-dom";
+import Image from "next/image";
+import Link from "next/link";
 
 import nagarajImage from "../../assets/Nagaraj.jpg";
 
@@ -125,9 +128,10 @@ const Hero: React.FC = () => {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
           <div className="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-primary/80 shadow-[0_0_60px_-12px_rgba(252,213,53,0.6)] overflow-hidden bg-gray-800">
-            <img
+            <Image
               src={nagarajImage}
               alt="Nagaraj G"
+              priority
               className="w-full h-full object-cover"
             />
           </div>
@@ -205,14 +209,14 @@ const Hero: React.FC = () => {
         {/* Buttons */}
         <motion.div variants={reveal} className="flex gap-4 mt-9">
           <Link
-            to="/projects"
+            href="/projects"
             className="group relative overflow-hidden bg-primary text-background font-semibold px-7 py-3 rounded-full shadow-[0_0_30px_-8px_rgba(252,213,53,0.7)] transition hover:shadow-[0_0_40px_-6px_rgba(252,213,53,0.9)]"
           >
             <span className="relative z-10">View My Work</span>
             <span className="absolute inset-0 -translate-x-full bg-white/30 transition-transform duration-500 group-hover:translate-x-full" />
           </Link>
           <Link
-            to="/contact"
+            href="/contact"
             className="border border-primary/70 text-primary px-7 py-3 rounded-full backdrop-blur-sm transition hover:bg-primary hover:text-background"
           >
             Contact Me

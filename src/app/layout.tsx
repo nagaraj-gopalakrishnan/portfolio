@@ -1,0 +1,64 @@
+import type { Metadata, Viewport } from "next";
+import Header from "../components/Header";
+import { OG_DEFAULTS, SITE_NAME, SITE_URL } from "./site";
+import "./globals.css";
+
+const description =
+  "Portfolio of Nagaraj Gopalakrishnan, a Full Stack & Mobile App Developer building cross-platform Android & iOS apps with Flutter and React Native, plus fintech, SaaS, and enterprise web platforms using React, Next.js, Node.js, and Laravel.";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} | Full Stack & Mobile App Developer – React, Flutter, React Native, Laravel, Fintech & SaaS`,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description,
+  keywords: [
+    "Nagaraj Gopalakrishnan",
+    "Full Stack Developer Dubai",
+    "Mobile App Developer",
+    "Flutter Developer",
+    "React Native Developer",
+    "Android Developer",
+    "iOS Developer",
+    "React Developer",
+    "Next.js",
+    "Node.js",
+    "Laravel Developer",
+    "Fintech",
+    "SaaS",
+    "Software Engineer UAE",
+  ],
+  authors: [{ name: SITE_NAME }],
+  robots: { index: true, follow: true },
+  icons: { icon: "/favicon.svg" },
+  openGraph: {
+    ...OG_DEFAULTS,
+    url: "/",
+    title: `${SITE_NAME} | Full Stack & Mobile App Developer`,
+    description:
+      "Full Stack & Mobile App Developer building Android & iOS apps with Flutter and React Native, plus fintech, SaaS, and enterprise web platforms with React, Next.js, and Laravel.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} | Full Stack & Mobile App Developer`,
+    description:
+      "Building cross-platform Android & iOS apps with Flutter and React Native, plus fintech, SaaS, and enterprise web platforms.",
+    images: ["/preview.jpg"],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#181A20",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body className="bg-background text-white min-h-screen">
+        <Header />
+        <main className="pt-20">{children}</main>
+      </body>
+    </html>
+  );
+}
