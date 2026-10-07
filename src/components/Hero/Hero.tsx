@@ -162,6 +162,8 @@ const Hero: React.FC = () => {
             <ReactTyped
               strings={[
                 "Full Stack Developer",
+                "Mobile App Developer",
+                "Prompt Engineer",
                 "Cybersecurity Enthusiast",
                 "Networking Engineer",
                 "Digital Marketing Strategist",
