@@ -155,7 +155,7 @@ const Hero: React.FC = () => {
         {/* Typing Effect for Roles */}
         <motion.h2
           variants={reveal}
-          className="text-xl md:text-3xl font-medium text-white/90 mt-4 h-10"
+          className="text-lg min-[360px]:text-xl md:text-3xl font-medium text-white/90 mt-4 h-10"
         >
           I'm a{" "}
           <span className="text-primary">
