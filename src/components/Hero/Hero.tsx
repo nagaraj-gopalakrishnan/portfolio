@@ -165,7 +165,6 @@ const Hero: React.FC = () => {
                 "Mobile App Developer",
                 "Prompt Engineer",
                 "Cybersecurity Enthusiast",
-                "Networking Engineer",
                 "Digital Marketing Strategist",
               ]}
               typeSpeed={80}

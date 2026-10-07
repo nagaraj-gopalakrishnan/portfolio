@@ -365,15 +365,17 @@ const Projects: React.FC = () => {
         </motion.div>
 
         {/* Filter Buttons */}
-        <div className="mb-12 flex flex-wrap justify-center gap-2 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur-md mx-auto w-fit max-w-full">
+        <div className="mb-12 mx-auto flex max-w-full flex-wrap justify-center gap-2 lg:w-fit lg:rounded-full lg:border lg:border-white/10 lg:bg-white/5 lg:p-1 lg:backdrop-blur-md">
           {categories.map((category) => {
             const active = filter === category;
             return (
               <button
                 key={category}
                 onClick={() => setFilter(category)}
-                className={`relative rounded-full px-5 py-2 text-sm font-medium transition-colors ${
-                  active ? "text-background" : "text-white/70 hover:text-white"
+                className={`relative rounded-full border px-4 py-2 text-sm font-medium backdrop-blur-md transition-colors lg:border-transparent lg:px-5 lg:backdrop-blur-none ${
+                  active
+                    ? "border-primary text-background"
+                    : "border-white/10 bg-white/5 text-white/70 hover:text-white lg:bg-transparent"
                 }`}
               >
                 {active && (
