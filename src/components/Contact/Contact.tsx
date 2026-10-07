@@ -11,12 +11,11 @@ import {
 import { Mail, Phone, MapPin, Linkedin, FileDown, FileText, ExternalLink } from "lucide-react";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(10px)" },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -108,7 +107,7 @@ const Contact: React.FC = () => {
         {/* Header */}
         <motion.div
           variants={stagger}
-          initial="hidden"
+          initial={false}
           animate="show"
           className="mb-16 text-center"
         >

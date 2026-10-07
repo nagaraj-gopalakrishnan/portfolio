@@ -47,12 +47,11 @@ type Project = {
 };
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(10px)" },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -336,7 +335,7 @@ const Projects: React.FC = () => {
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
-          initial="hidden"
+          initial={false}
           animate="show"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
           className="mb-12 text-center"
@@ -403,9 +402,9 @@ const Projects: React.FC = () => {
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, scale: 0.95, filter: "blur(8px)" }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.97 }}
                 transition={{
                   duration: 0.5,
                   delay: index * 0.04,

@@ -1,35 +1,31 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface PageTransitionProps {
   children: React.ReactNode;
 }
 
+// The first page a visitor lands on renders fully visible (fast first paint
+// and LCP); only later client-side navigations play the transition.
+let hasNavigated = false;
+
 /**
- * Cinematic cross-dissolve:
- * the outgoing page fades + blurs while gently zooming forward,
- * the incoming page fades + un-blurs in from slightly behind.
+ * Light fade-up when moving between pages.
  */
 const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
-  const variants = {
-    initial: { opacity: 0, scale: 0.98, filter: "blur(8px)" },
-    animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
-    exit: { opacity: 0, scale: 1.04, filter: "blur(8px)" },
-  };
+  const animateIn = hasNavigated;
+
+  useEffect(() => {
+    hasNavigated = true;
+  }, []);
 
   return (
     <motion.div
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={variants}
-      transition={{
-        duration: 0.6,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      style={{ transformOrigin: "center" }}
+      initial={animateIn ? { opacity: 0, y: 12 } : false}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
       className="w-full"
     >
       {children}

@@ -18,17 +18,16 @@ import nagarajImage from "../../assets/Nagaraj.jpg";
 const container: Variants = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.18, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.08 },
   },
 };
 
 const reveal: Variants = {
-  hidden: { opacity: 0, y: 40, filter: "blur(12px)" },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -114,7 +113,7 @@ const Hero: React.FC = () => {
       {/* ===== Foreground content ===== */}
       <motion.div
         variants={container}
-        initial="hidden"
+        initial={false}
         animate="show"
         style={{ x: contentX, y: contentY }}
         className="relative z-10 flex flex-col items-center"
