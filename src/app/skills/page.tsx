@@ -5,7 +5,7 @@ import Skills from "../../components/Skills";
 export const metadata: Metadata = pageMetadata(
   "/skills/",
   "Skills",
-  "Technical skills of Nagaraj Gopalakrishnan: React, Next.js, Flutter, React Native, Node.js, Laravel, Django, AWS, Google Cloud, Docker, AI integration and more.",
+  "Skills of Nagaraj Gopalakrishnan: React, Next.js, Flutter, React Native, Node.js, Laravel, Django, AWS, Google Cloud, Docker and AI integration.",
 );
 
 export default function SkillsPage() {

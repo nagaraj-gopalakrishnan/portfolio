@@ -5,7 +5,7 @@ import About from "../../components/About";
 export const metadata: Metadata = pageMetadata(
   "/about/",
   "About",
-  "About Nagaraj Gopalakrishnan — Full Stack & Mobile Developer based in Dubai, UAE, with 5+ years building enterprise web and cross-platform mobile apps. Education, certifications and experience.",
+  "Nagaraj Gopalakrishnan, Full Stack & Mobile Developer in Dubai with 5+ years building enterprise web and cross-platform mobile apps. Education & certifications.",
 );
 
 export default function AboutPage() {

@@ -118,7 +118,7 @@ const Contact: React.FC = () => {
           >
             Let's Connect
           </motion.span>
-          <motion.h2
+          <motion.h1
             variants={fadeUp}
             className="mt-3 text-4xl md:text-6xl font-bold tracking-tight"
           >
@@ -126,7 +126,7 @@ const Contact: React.FC = () => {
             <span className="bg-gradient-to-r from-primary via-yellow-200 to-primary bg-clip-text text-transparent animate-gradient">
               Touch
             </span>
-          </motion.h2>
+          </motion.h1>
           <motion.p
             variants={fadeUp}
             className="mx-auto mt-5 max-w-3xl text-lg text-gray-400"
@@ -144,9 +144,9 @@ const Contact: React.FC = () => {
             whileInView="show"
             viewport={{ once: true, margin: "-80px" }}
           >
-            <motion.h3 variants={fadeUp} className="mb-3 text-2xl font-bold">
+            <motion.h2 variants={fadeUp} className="mb-3 text-2xl font-bold">
               Contact Information
-            </motion.h3>
+            </motion.h2>
             <motion.p
               variants={fadeUp}
               className="mb-8 leading-relaxed text-gray-400"
@@ -177,7 +177,7 @@ const Contact: React.FC = () => {
                       <Icon className="text-primary" size={22} />
                     </div>
                     <div>
-                      <h4 className="mb-0.5 font-semibold">{info.title}</h4>
+                      <h3 className="mb-0.5 font-semibold">{info.title}</h3>
                       <p className="text-sm text-gray-400">{info.value}</p>
                     </div>
                   </motion.a>
@@ -191,13 +191,13 @@ const Contact: React.FC = () => {
               className="relative mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-md"
             >
               <span className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-green-500/10 blur-3xl" />
-              <h4 className="mb-3 flex items-center gap-2 font-bold">
+              <h3 className="mb-3 flex items-center gap-2 font-bold">
                 <span className="relative flex h-3 w-3">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
                   <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500" />
                 </span>
                 Available for Work
-              </h4>
+              </h3>
               <p className="text-sm text-gray-400">
                 Open to full-time and freelance projects. Specializing in Full
                 Stack &amp; Mobile Development, AI Integration, and Enterprise
@@ -215,7 +215,7 @@ const Contact: React.FC = () => {
             className="relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-md"
           >
             <span className="pointer-events-none absolute -left-16 -bottom-16 h-52 w-52 rounded-full bg-primary/10 blur-3xl" />
-            <h3 className="mb-6 text-2xl font-bold">My Resume</h3>
+            <h2 className="mb-6 text-2xl font-bold">My Resume</h2>
 
             {/* Mobile browsers can't render PDFs inline, so show a card instead */}
             <div className="flex w-full flex-col items-center gap-4 rounded-xl border border-white/10 bg-white/[0.04] p-6 text-center md:hidden">

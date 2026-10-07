@@ -4,12 +4,12 @@ import { OG_DEFAULTS, SITE_NAME, SITE_URL } from "./site";
 import "./globals.css";
 
 const description =
-  "Portfolio of Nagaraj Gopalakrishnan, a Full Stack & Mobile App Developer building cross-platform Android & iOS apps with Flutter and React Native, plus fintech, SaaS, and enterprise web platforms using React, Next.js, Node.js, and Laravel.";
+  "Full Stack & Mobile App Developer in Dubai building Flutter & React Native apps plus fintech, SaaS and enterprise web platforms with React, Next.js and Laravel.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | Full Stack & Mobile App Developer – React, Flutter, React Native, Laravel, Fintech & SaaS`,
+    default: `${SITE_NAME} | Full Stack & Mobile App Developer`,
     template: `%s | ${SITE_NAME}`,
   },
   description,
@@ -36,14 +36,12 @@ export const metadata: Metadata = {
     ...OG_DEFAULTS,
     url: "/",
     title: `${SITE_NAME} | Full Stack & Mobile App Developer`,
-    description:
-      "Full Stack & Mobile App Developer building Android & iOS apps with Flutter and React Native, plus fintech, SaaS, and enterprise web platforms with React, Next.js, and Laravel.",
+    description,
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} | Full Stack & Mobile App Developer`,
-    description:
-      "Building cross-platform Android & iOS apps with Flutter and React Native, plus fintech, SaaS, and enterprise web platforms.",
+    description,
     images: ["/preview.jpg"],
   },
 };

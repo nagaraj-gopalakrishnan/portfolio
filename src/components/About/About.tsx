@@ -187,7 +187,7 @@ const About: React.FC = () => {
           >
             Web &amp; Mobile Developer
           </motion.span>
-          <motion.h2
+          <motion.h1
             variants={fadeUp}
             className="mt-3 text-4xl md:text-6xl font-bold tracking-tight"
           >
@@ -195,7 +195,7 @@ const About: React.FC = () => {
             <span className="bg-gradient-to-r from-primary via-yellow-200 to-primary bg-clip-text text-transparent animate-gradient">
               Me
             </span>
-          </motion.h2>
+          </motion.h1>
           <motion.p
             variants={fadeUp}
             className="mx-auto mt-5 max-w-3xl text-lg text-gray-400"
@@ -222,9 +222,9 @@ const About: React.FC = () => {
               variants={fadeUp}
               className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 text-center backdrop-blur-md transition-colors hover:border-primary/50"
             >
-              <h3 className="mb-2 text-4xl font-bold text-primary md:text-5xl">
+              <p className="mb-2 text-4xl font-bold text-primary md:text-5xl">
                 <CountUp value={stat.value} />
-              </h3>
+              </p>
               <p className="text-sm text-gray-400">{stat.label}</p>
             </motion.div>
           ))}
@@ -243,7 +243,7 @@ const About: React.FC = () => {
               <div className="mb-5 inline-flex rounded-xl border border-white/10 bg-white/5 p-3">
                 {item.icon}
               </div>
-              <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
+              <h2 className="mb-3 text-xl font-semibold">{item.title}</h2>
               <p className="leading-relaxed text-gray-400">{item.description}</p>
             </Card>
           ))}
@@ -258,7 +258,7 @@ const About: React.FC = () => {
           className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-md"
         >
           <span className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-primary/10 blur-3xl" />
-          <h3 className="mb-4 text-2xl font-bold">Professional Summary</h3>
+          <h2 className="mb-4 text-2xl font-bold">Professional Summary</h2>
           <p className="mb-6 leading-relaxed text-gray-400">
             Full Stack & Mobile Developer with expertise in web architecture
             design, front-end web development, and cross-platform mobile app
@@ -319,20 +319,20 @@ const About: React.FC = () => {
           <Card>
             <div className="mb-4 flex items-center gap-2 text-primary">
               <GraduationCap size={22} />
-              <h3 className="text-xl font-bold">Education</h3>
+              <h2 className="text-xl font-bold">Education</h2>
             </div>
             <div className="space-y-5">
               <div className="border-l-2 border-primary/40 pl-4">
-                <h4 className="font-semibold">
+                <h3 className="font-semibold">
                   Master of Computer Application (MCA)
-                </h4>
+                </h3>
                 <p className="text-sm text-gray-400">Anna University, India</p>
                 <p className="text-sm text-gray-500">2021 - 2023</p>
               </div>
               <div className="border-l-2 border-primary/40 pl-4">
-                <h4 className="font-semibold">
+                <h3 className="font-semibold">
                   Bachelor of Science in Computer Technology
-                </h4>
+                </h3>
                 <p className="text-sm text-gray-400">
                   Bharathiar University, India
                 </p>
@@ -345,7 +345,7 @@ const About: React.FC = () => {
           <Card>
             <div className="mb-4 flex items-center gap-2 text-primary">
               <BadgeCheck size={22} />
-              <h3 className="text-xl font-bold">Certifications</h3>
+              <h2 className="text-xl font-bold">Certifications</h2>
             </div>
             <ul className="space-y-4">
               {[

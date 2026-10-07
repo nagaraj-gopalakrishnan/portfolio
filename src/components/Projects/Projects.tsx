@@ -347,7 +347,7 @@ const Projects: React.FC = () => {
           >
             Selected Work
           </motion.span>
-          <motion.h2
+          <motion.h1
             variants={fadeUp}
             className="mt-3 text-4xl md:text-6xl font-bold tracking-tight"
           >
@@ -355,7 +355,7 @@ const Projects: React.FC = () => {
             <span className="bg-gradient-to-r from-primary via-yellow-200 to-primary bg-clip-text text-transparent animate-gradient">
               Projects
             </span>
-          </motion.h2>
+          </motion.h1>
           <motion.p
             variants={fadeUp}
             className="mx-auto mt-5 max-w-3xl text-lg text-gray-400"
@@ -439,9 +439,9 @@ const Projects: React.FC = () => {
                 <div className="flex flex-1 flex-col p-5">
                   <div className="mb-3 flex items-center gap-2">
                     {project.icon}
-                    <h3 className="text-base font-bold leading-tight transition-colors group-hover:text-primary">
+                    <h2 className="text-base font-bold leading-tight transition-colors group-hover:text-primary">
                       {project.title}
-                    </h3>
+                    </h2>
                   </div>
 
                   <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-gray-400">

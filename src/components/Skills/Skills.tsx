@@ -226,7 +226,7 @@ const Skills: React.FC = () => {
           >
             What I Work With
           </motion.span>
-          <motion.h2
+          <motion.h1
             variants={fadeUp}
             className="mt-3 text-4xl md:text-6xl font-bold tracking-tight"
           >
@@ -234,7 +234,7 @@ const Skills: React.FC = () => {
             <span className="bg-gradient-to-r from-primary via-yellow-200 to-primary bg-clip-text text-transparent animate-gradient">
               Skills
             </span>
-          </motion.h2>
+          </motion.h1>
           <motion.p
             variants={fadeUp}
             className="mx-auto mt-5 max-w-3xl text-lg text-gray-400"
@@ -266,7 +266,7 @@ const Skills: React.FC = () => {
                 <span className="inline-flex rounded-xl border border-white/10 bg-white/5 p-2.5">
                   {category.icon}
                 </span>
-                <h3 className="text-lg font-semibold">{category.title}</h3>
+                <h2 className="text-lg font-semibold">{category.title}</h2>
               </div>
 
               <div className="space-y-4">
@@ -303,9 +303,9 @@ const Skills: React.FC = () => {
           className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-md"
         >
           <span className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-primary/10 blur-3xl" />
-          <h3 className="mb-6 text-center text-2xl font-bold">
+          <h2 className="mb-6 text-center text-2xl font-bold">
             Tools &amp; <span className="text-primary">Technologies</span>
-          </h3>
+          </h2>
           <div className="flex flex-wrap justify-center gap-3">
             {tools.map((tool) => (
               <motion.span
@@ -328,9 +328,9 @@ const Skills: React.FC = () => {
           className="relative mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-md"
         >
           <span className="pointer-events-none absolute -left-16 -bottom-16 h-52 w-52 rounded-full bg-sky-500/10 blur-3xl" />
-          <h3 className="mb-6 text-center text-2xl font-bold">
+          <h2 className="mb-6 text-center text-2xl font-bold">
             Soft <span className="text-primary">Skills</span>
-          </h3>
+          </h2>
           <div className="mx-auto grid w-fit grid-cols-1 gap-3 sm:w-auto sm:grid-cols-2 sm:gap-4 md:grid-cols-4">
             {[
               "Problem Solving",
