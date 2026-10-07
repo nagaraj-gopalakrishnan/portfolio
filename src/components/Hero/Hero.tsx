@@ -7,7 +7,7 @@ import {
   type Variants,
 } from "framer-motion";
 import { ReactTyped } from "react-typed";
-import { Laptop, Shield, Smartphone, BarChart3 } from "lucide-react";
+import { Laptop, Sparkles, Smartphone, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import nagarajImage from "../../assets/Nagaraj.jpg";
@@ -29,7 +29,7 @@ const reveal: Variants = {
   },
 };
 
-const icons = [Laptop, Shield, Smartphone, BarChart3];
+const icons = [Laptop, Sparkles, Smartphone, BarChart3];
 
 const Hero: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
