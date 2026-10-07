@@ -329,7 +329,7 @@ const Skills: React.FC = () => {
           <h3 className="mb-6 text-center text-2xl font-bold">
             Soft <span className="text-primary">Skills</span>
           </h3>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="mx-auto grid w-fit grid-cols-1 gap-3 sm:w-auto sm:grid-cols-2 sm:gap-4 md:grid-cols-4">
             {[
               "Problem Solving",
               "Project Management",
