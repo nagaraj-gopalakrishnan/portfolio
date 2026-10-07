@@ -6,7 +6,7 @@ import {
   useTransform,
   type Variants,
 } from "framer-motion";
-import { Mail, Phone, MapPin, Linkedin, FileDown } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, FileDown, FileText, ExternalLink } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40, filter: "blur(10px)" },
@@ -215,7 +215,26 @@ const Contact: React.FC = () => {
             <span className="pointer-events-none absolute -left-16 -bottom-16 h-52 w-52 rounded-full bg-primary/10 blur-3xl" />
             <h3 className="mb-6 text-2xl font-bold">My Resume</h3>
 
-            <div className="h-[600px] w-full overflow-hidden rounded-xl border border-white/10 bg-gray-900 shadow-2xl shadow-black/40">
+            {/* Mobile browsers can't render PDFs inline, so show a card instead */}
+            <div className="flex w-full flex-col items-center gap-4 rounded-xl border border-white/10 bg-white/[0.04] p-6 text-center md:hidden">
+              <div className="rounded-xl border border-primary/30 bg-primary/10 p-4 text-primary">
+                <FileText size={36} />
+              </div>
+              <p className="text-sm text-gray-400">
+                View my resume in full screen or download a copy.
+              </p>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-primary/70 px-6 py-2.5 text-sm font-medium text-primary transition hover:bg-primary hover:text-background"
+              >
+                <ExternalLink size={16} />
+                View Resume
+              </a>
+            </div>
+
+            <div className="hidden h-[600px] w-full overflow-hidden rounded-xl border border-white/10 bg-gray-900 shadow-2xl shadow-black/40 md:block">
               <iframe
                 src="/resume.pdf"
                 className="h-full w-full"
