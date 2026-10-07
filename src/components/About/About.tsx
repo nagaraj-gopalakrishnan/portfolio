@@ -84,7 +84,7 @@ const Card: React.FC<React.PropsWithChildren<{ className?: string }>> = ({
 
 const About: React.FC = () => {
   const stats = [
-    { label: "Years Experience", value: "6+" },
+    { label: "Years Experience", value: "5+" },
     { label: "Projects Completed", value: "45+" },
     { label: "Technologies", value: "35+" },
     { label: "Happy Clients", value: "100+" },
@@ -101,7 +101,7 @@ const About: React.FC = () => {
       icon: <Briefcase className="text-primary" size={28} />,
       title: "Enterprise Solutions",
       description:
-        "6+ years building E-Commerce, HRMS, WMS, Solar Energy Management, and Logistics applications. SAP EWM integration specialist.",
+        "5+ years building E-Commerce, HRMS, WMS, Solar Energy Management, and Logistics applications. SAP EWM integration specialist.",
     },
     {
       icon: <Smartphone className="text-primary" size={28} />,
@@ -198,7 +198,7 @@ const About: React.FC = () => {
             variants={fadeUp}
             className="mx-auto mt-5 max-w-3xl text-lg text-gray-400"
           >
-            Full Stack & Mobile Developer with 6+ years of experience building
+            Full Stack & Mobile Developer with 5+ years of experience building
             enterprise web and cross-platform mobile applications. Currently
             based in Dubai, UAE, specializing in Flutter & React Native app
             development, AI integration, cloud infrastructure, and modern web
